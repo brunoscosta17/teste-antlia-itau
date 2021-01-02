@@ -1,0 +1,75 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id </th>
+      <td mat-cell *matCellDef="let element"> {{element?.id}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="company">
+      <th mat-header-cell *matHeaderCellDef>Empresa </th>
+      <td mat-cell *matCellDef="let element"> {{element?.company}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="CNPJ">
+      <th mat-header-cell *matHeaderCellDef>CNPJ</th>
+      <td mat-cell *matCellDef="let element">{{element?.CNPJ}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="plan">
+      <th mat-header-cell *matHeaderCellDef>Plano</th>
+      <td mat-cell *matCellDef="let element">{{element?.plan}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="bill">
+      <th mat-header-cell *matHeaderCellDef>Tarifa</th>
+      <td mat-cell *matCellDef="let element">{{element?.bill}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="minutes">
+      <th mat-header-cell *matHeaderCellDef>Minutos</th>
+      <td mat-cell *matCellDef="let element">{{element?.minutes}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="planValue">
+      <th mat-header-cell *matHeaderCellDef>Valor Plano</th>
+      <td mat-cell *matCellDef="let element">{{element?.planValue}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="joinDate">
+      <th mat-header-cell *matHeaderCellDef>Data de Adesão</th>
+      <td mat-cell *matCellDef="let element">{{element?.joinDate}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="sendDate">
+      <th mat-header-cell *matHeaderCellDef>Data de envio</th>
+      <td mat-cell *matCellDef="let element">{{element?.sendDate}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Ação</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Ação">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>visibility</mat-icon>
+            <span>Visualizar</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Excluir</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

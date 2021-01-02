@@ -1,0 +1,7 @@
+<app-company-form
+    [companyFormEvent]="eventSubject.asObservable()"
+    (companyFormSubmit)="addCompany($event)">
+</app-company-form>
+<app-company-list
+    [dataSource]="dataSource">
+</app-company-list>
