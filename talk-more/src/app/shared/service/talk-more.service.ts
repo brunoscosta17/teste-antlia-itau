@@ -1,16 +1,20 @@
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TalkMoreService {
 
+  public dataSource: BehaviorSubject<any>;
+
   apiUrl = 'https://agdo-server.appspot.com/solicitacoes';
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'applicationId': 'BrunoDaSilvaCosta'
     })
   };
   
@@ -27,6 +31,15 @@ export class TalkMoreService {
   }
 
   public post(value: any) {
-    return this.httpClient.post(this.apiUrl, value)
+    return this.httpClient.post(this.apiUrl, value, this.httpOptions)
   }
+
+  public update(value: any) {
+    return this.httpClient.put(this.apiUrl, value)
+  }
+
+  public delete(id: string) {
+    return this.httpClient.delete(`${this.apiUrl}/${id}`)
+  }
+
 }

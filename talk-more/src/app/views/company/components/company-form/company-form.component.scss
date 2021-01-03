@@ -1,3 +1,5 @@
+@import '../../../../../sass/styles.scss';
+
 mat-form-field {
     margin-right: 1em;
 }
@@ -10,4 +12,10 @@ mat-form-field {
 
 .form-full-width {
     width: 100%;
+}
+
+.btn-talk-more {
+    background-color: $TALKMORE_ORANGE;
+    color: white;
+    min-width: 200px;
 }

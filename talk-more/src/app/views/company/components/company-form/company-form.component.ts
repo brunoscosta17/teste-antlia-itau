@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 
@@ -7,11 +7,13 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './company-form.component.html',
   styleUrls: ['./company-form.component.scss']
 })
-export class CompanyFormComponent implements OnInit {
+export class CompanyFormComponent implements OnChanges, OnInit {
 
   @Input()
   companyFormEvent: Observable<string>;
   companyFormEventSubscription: Subscription;
+
+  @Input() companyEditResult: any[];
 
   @Output() companyFormSubmit: EventEmitter<any> = new EventEmitter();
 
@@ -21,8 +23,15 @@ export class CompanyFormComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
+  ngOnChanges(simplesChanges: SimpleChanges) {
+    if (simplesChanges && this.companyEditResult) {
+      this.companyForm.patchValue(this.companyEditResult);
+    }
+  }
+
   ngOnInit(): void {
     this.companyForm = this.formBuilder.group({
+      _id: [''],
       company: ['', Validators.compose([Validators.required, ])],
       CNPJ: ['', Validators.compose([Validators.required, ])],
       plan: ['', Validators.compose([Validators.required, ])],
@@ -32,27 +41,6 @@ export class CompanyFormComponent implements OnInit {
       joinDate: ['', Validators.compose([Validators.required, ])],
       // sendDate: ['', Validators.compose([Validators.required, ])],
     });
-  }
-
-  getErrorMessage() {
-    if (this.companyForm.controls.company.hasError('required')) {
-      return 'Insira o nome da empresa';
-    } else
-    if (this.companyForm.controls.CNPJ.hasError('required')) {
-      return 'Insira o CNPJ da empresa';
-    } else
-    if (this.companyForm.controls.plan.hasError('required')) {
-      return 'Insira o nome do plano';
-    } else
-    if (this.companyForm.controls.bill.hasError('required')) {
-      return 'Insira a taxa';
-    } else
-    if (this.companyForm.controls.minutes.hasError('required')) {
-      return 'Insira os minutos';
-    } else
-    if (this.companyForm.controls.joinDate.hasError('required')) {
-      return 'Insira a data de adesão';
-    }
   }
 
   handleSubmit() {

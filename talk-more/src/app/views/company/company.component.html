@@ -1,7 +1,10 @@
 <app-company-form
     [companyFormEvent]="eventSubject.asObservable()"
+    [companyEditResult]="company"
     (companyFormSubmit)="addCompany($event)">
 </app-company-form>
 <app-company-list
-    [dataSource]="dataSource">
+    [dataSource]="dataSource"
+    (companyEditList)="handleEditList($event)"
+    (companyDelete)="handleDelete($event)">
 </app-company-list>

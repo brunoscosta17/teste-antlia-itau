@@ -6,91 +6,48 @@
         <mat-form-field style="width: 41%;"> 
             <mat-label>Empresa</mat-label>
             <input matInput formControlName="company" name="company">
-            <mat-error *ngIf="companyForm.controls.company.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="companyForm.controls.company.invalid">O nome da empresa é obrigatório!</mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>CNPJ</mat-label>
             <input matInput formControlName="CNPJ" name="CNPJ">
-            <mat-error *ngIf="companyForm.controls.CNPJ.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="companyForm.controls.CNPJ.invalid">O CNPJ da empresa é obrigatório!</mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Plano</mat-label>
             <input matInput formControlName="plan" name="plan">
-            <mat-error *ngIf="companyForm.controls.plan.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="companyForm.controls.plan.invalid">O nome do plano é obrigatório!</mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Taxa</mat-label>
             <input matInput formControlName="bill" name="bill">
-            <mat-error *ngIf="companyForm.controls.bill.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="companyForm.controls.bill.invalid">A taxa é obrigatória!</mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Minutos</mat-label>
             <input matInput formControlName="minutes" name="minutes">
-            <mat-error *ngIf="companyForm.controls.minutes.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="companyForm.controls.minutes.invalid">Informe os minutos do plano!</mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Valor lano</mat-label>
+            <mat-label>Valor Plano</mat-label>
             <input matInput formControlName="planValue" name="planValue">
-            <mat-error *ngIf="companyForm.controls.planValue.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="companyForm.controls.planValue.invalid">O valor do plano é obrigatório!</mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Data de adesão</mat-label>
+            <mat-label>Data de Adesão</mat-label>
             <input matInput formControlName="joinDate" name="joinDate">
-            <mat-error *ngIf="companyForm.controls.joinDate.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="companyForm.controls.joinDate.invalid">A data de adesão é obrigatória!</mat-error>
         </mat-form-field>
 
-        <button mat-button (click)="handleSubmit()" class="btn-talk-more">Adicionar</button>
+        <button mat-button (click)="handleSubmit()" class="btn-talk-more">{{ companyEditResult ? 'Atualizar Solicitação' : 'Adicionar Solicitação' }}</button>
 
     </form>
 </mat-card>
 
 <pre>{{ companyForm.value | json }}</pre>
-
-<!-- <h1>Nova solicitação</h1>
-<span>Insira aqui os dados cadastrais para uma nova solicitação</span>
-<div class="form" class="mat-dialog-content">
-    <mat-grid-list cols="2" rowHeight="2:1">
-        <form action="" [formGroup]="companyForm">
-            
-            <mat-form-field class="form-full-width">
-                <mat-label>Empresa</mat-label>
-                <input matInput formControlName="company" name="company">
-            </mat-form-field>
-    
-            <mat-form-field class="form-full-width">
-                <mat-label>CNPJ</mat-label>
-                <input matInput formControlName="CNPJ" name="CNPJ">
-            </mat-form-field>
-    
-            <mat-form-field class="form-full-width">
-                <mat-label>Plano</mat-label>
-                <input matInput formControlName="plan" name="plan">
-            </mat-form-field>
-    
-            <mat-form-field class="form-full-width">
-                <mat-label>Taxa</mat-label>
-                <input matInput formControlName="bill" name="bill">
-            </mat-form-field>
-    
-            <mat-form-field class="form-full-width">
-                <mat-label>Minutos</mat-label>
-                <input matInput formControlName="minutes" name="minutes">
-            </mat-form-field>
-    
-            <mat-form-field class="form-full-width">
-                <mat-label>Data de adesão</mat-label>
-                <input matInput formControlName="joinDate" name="joinDate">
-            </mat-form-field>
-    
-            <div class="mat-dialog">
-                <button mat-button (click)="handleSubmit()">Adicionar</button>
-            </div>
-        </form>
-      </mat-grid-list>
-</div> -->
