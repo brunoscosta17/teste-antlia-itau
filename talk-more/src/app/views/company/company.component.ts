@@ -20,6 +20,7 @@ export class CompanyComponent implements OnInit {
   viewEdit = false;
 
   @Output() companyEditForm: EventEmitter<any> = new EventEmitter();
+  @Output() resetForm: EventEmitter<any> = new EventEmitter();
 
   constructor(
     public talkMoreService: TalkMoreService,
@@ -45,6 +46,7 @@ export class CompanyComponent implements OnInit {
           duration: 3000
         });
         this.getCompanies();
+        this.eventSubject.next();
       },(error) => {
         this._snackBar.open('Erro ao adicionar esta empresa.', 'Fechar', {
           duration: 3000
@@ -59,6 +61,7 @@ export class CompanyComponent implements OnInit {
           duration: 3000
         });
         this.getCompanies();
+        this.eventSubject.next();
       },(error) => {
         this._snackBar.open('Erro ao atualizar esta empresa.', 'Fechar', {
           duration: 3000

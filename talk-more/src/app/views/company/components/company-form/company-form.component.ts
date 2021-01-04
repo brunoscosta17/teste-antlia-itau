@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
@@ -27,6 +27,8 @@ export class CompanyFormComponent implements OnInit {
 
   @Input() companyEditResult: any[];
 
+  @Input() companyEditForm: any;
+
   @Output() companyFormSubmit: EventEmitter<any> = new EventEmitter();
 
   public companyForm: FormGroup;
@@ -40,6 +42,9 @@ export class CompanyFormComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.companyFormEventSubscription = this.companyFormEvent.subscribe(() => {
+      this.companyForm.reset();
+    });
     
     this.companyForm = this.formBuilder.group({
       _id: [''],
@@ -74,6 +79,10 @@ export class CompanyFormComponent implements OnInit {
             controls.plan.setValue(value.trim(), { emitEvent: false })
         }
     });
+
+  }
+
+  resetForm() {
 
   }
 
