@@ -1,7 +1,7 @@
 <app-company-form *ngIf="!viewEdit"
     [companyFormEvent]="eventSubject.asObservable()"
     [companyEditResult]="company"
-    (companyFormSubmit)="addCompany($event)">
+    (companyFormSubmit)="addEditCompany($event)">
 </app-company-form>
 <app-company-list
     [dataSource]="dataSource"

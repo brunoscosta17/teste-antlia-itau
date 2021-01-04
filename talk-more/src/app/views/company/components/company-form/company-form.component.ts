@@ -82,10 +82,6 @@ export class CompanyFormComponent implements OnInit {
 
   }
 
-  resetForm() {
-
-  }
-
   handleSubmit() {
 
     let data = this.companyForm.get('joinDate').value;

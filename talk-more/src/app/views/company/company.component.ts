@@ -36,8 +36,8 @@ export class CompanyComponent implements OnInit {
       .subscribe((data: any) => this.dataSource = data);
   }
 
-  addCompany(value) {
-    console.log(value);
+  addEditCompany(value) {
+    this.viewEdit = true;
     if (!value._id) {
       delete value._id;
       this.talkMoreService.post(value)
@@ -46,12 +46,12 @@ export class CompanyComponent implements OnInit {
           duration: 3000
         });
         this.getCompanies();
+        this.viewEdit = false;
         this.eventSubject.next();
       },(error) => {
         this._snackBar.open('Erro ao adicionar esta empresa.', 'Fechar', {
           duration: 3000
         });
-        console.log(error);
         this.eventSubject.next('enable');
       });
     } else {
@@ -61,13 +61,13 @@ export class CompanyComponent implements OnInit {
           duration: 3000
         });
         this.getCompanies();
+        this.viewEdit = false;
         this.eventSubject.next();
       },(error) => {
         this._snackBar.open('Erro ao atualizar esta empresa.', 'Fechar', {
           duration: 3000
         });
-        console.log(error);
-        this.eventSubject.next('enable');
+        this.eventSubject.next();
       });
     }
   }
@@ -82,7 +82,6 @@ export class CompanyComponent implements OnInit {
   }
 
   handleDelete(company) {
-    console.log(company);
     Swal.fire({
       title: 'Remover empresa',
       text: 'Deseja mesmo remover esta empresa?',
