@@ -98,7 +98,7 @@ export class CompanyComponent implements OnInit {
           duration: 3000
         });
         this.getCompanies();
-      }, (error) => {
+      }, () => {
         this._snackBar.open('Erro ao remover esta empresa.', 'Fechar', {
           duration: 3000
         });

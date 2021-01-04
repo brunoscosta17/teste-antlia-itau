@@ -11,7 +11,7 @@
 
         <mat-form-field>
             <mat-label>CNPJ</mat-label>
-            <input matInput formControlName="CNPJ" name="CNPJ">
+            <input matInput formControlName="CNPJ" name="CNPJ" [textMask]="{mask: MASKS.cnpj.textMask}">
             <mat-error *ngIf="companyForm.controls.CNPJ.invalid">O CNPJ da empresa é obrigatório!</mat-error>
         </mat-form-field>
 
@@ -29,7 +29,7 @@
 
         <mat-form-field>
             <mat-label>Minutos</mat-label>
-            <input matInput formControlName="minutes" name="minutes">
+            <input matInput formControlName="minutes" name="minutes" number [textMask]="{mask: MASKS.number.textMask}">
             <mat-error *ngIf="companyForm.controls.minutes.invalid">Informe os minutos do plano!</mat-error>
         </mat-form-field>
 

@@ -18,6 +18,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 
+import { NgBrazil } from 'ng-brazil' 
+import { TextMaskModule } from 'angular2-text-mask';
+
 import { CompanyComponent } from './views/company/company.component';
 import { CompanyListComponent } from './views/company/components/company-list/company-list.component';
 import { CompanyFormComponent } from './views/company/components/company-form/company-form.component';
@@ -37,6 +40,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgBrazil,
+    TextMaskModule,
     MatTableModule,
     MatPaginatorModule,
     MatSnackBarModule,
