@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
 import { DateTime } from 'luxon';
 import { cloneDeep } from 'lodash';
 import { dateToString, stringToDate } from '../../../../shared/functions/date.function';
+import { DateAdapter } from '@angular/material/core';
 
 const DATA = {
   cnpj: '40.841.253/0001-02',  
@@ -16,7 +17,7 @@ const DATA = {
   templateUrl: './company-form.component.html',
   styleUrls: ['./company-form.component.scss']
 })
-export class CompanyFormComponent implements OnChanges, OnInit {
+export class CompanyFormComponent implements OnInit {
 
   public MASKS = MASKS;
 
@@ -31,15 +32,10 @@ export class CompanyFormComponent implements OnChanges, OnInit {
   public companyForm: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder
-  ) { }
-
-  ngOnChanges(simplesChanges: SimpleChanges) {
-    // if (simplesChanges && this.companyEditResult) {
-    //   console.log(simplesChanges);
-    //   this.companyForm.value.joinDate = dateToString(this.companyEditResult.joinDate);
-    //   this.companyForm.patchValue(this.companyEditResult);
-    // }
+    private formBuilder: FormBuilder,
+    private dateAdapter: DateAdapter<Date>
+  ) {
+    this.dateAdapter.setLocale('pt-BR');
   }
 
   ngOnInit(): void {
