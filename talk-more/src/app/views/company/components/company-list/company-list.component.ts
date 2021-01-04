@@ -20,7 +20,7 @@ export interface Company {
   styleUrls: ['./company-list.component.scss']
 })
 
-export class CompanyListComponent implements AfterViewInit {
+export class CompanyListComponent {
 
   constructor(
     public talkMoreService: TalkMoreService
@@ -31,18 +31,10 @@ export class CompanyListComponent implements AfterViewInit {
   @Output() companyEditList: EventEmitter<any> = new EventEmitter();
   @Output() companyDelete: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
   displayedColumns: string[] = ['id', 'company', 'CNPJ', 'plan', 'bill', 'minutes', 'planValue', 'joinDate', 'sendDate', 'action'];
   pagination = new MatTableDataSource<Company>();
 
-  ngAfterViewInit() {
-    this.pagination.paginator = this.paginator;
-    this.pagination = new MatTableDataSource<Company>(this.dataSource);
-  }
-
   handleEdit(company) {
-    // this.talkMoreService.dataSource = company;
     this.companyEditList.emit(company);
   }
 

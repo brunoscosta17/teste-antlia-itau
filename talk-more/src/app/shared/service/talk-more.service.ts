@@ -22,7 +22,7 @@ export class TalkMoreService {
   ) { }
 
   public getAll() {
-    return this.httpClient.get<any>(this.apiUrl)
+    return this.httpClient.get<any>(this.apiUrl, this.httpOptions)
   }
 
   public getById(id: string): Observable<any> {
