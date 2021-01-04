@@ -2,6 +2,14 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
+import { DateTime } from 'luxon';
+import { cloneDeep } from 'lodash';
+import { dateToString, stringToDate } from '../../../../shared/functions/date.function';
+
+const DATA = {
+  cnpj: '40.841.253/0001-02',  
+  currency: 'R$ 999,99',
+}
 
 @Component({
   selector: 'app-company-form',
@@ -27,24 +35,32 @@ export class CompanyFormComponent implements OnChanges, OnInit {
   ) { }
 
   ngOnChanges(simplesChanges: SimpleChanges) {
-    if (simplesChanges && this.companyEditResult) {
-      this.companyForm.patchValue(this.companyEditResult);
-    }
+    // if (simplesChanges && this.companyEditResult) {
+    //   console.log(simplesChanges);
+    //   this.companyForm.value.joinDate = dateToString(this.companyEditResult.joinDate);
+    //   this.companyForm.patchValue(this.companyEditResult);
+    // }
   }
 
   ngOnInit(): void {
 
+    
     this.companyForm = this.formBuilder.group({
       _id: [''],
       company: ['', Validators.required],
       CNPJ: ['', Validators.required],
       plan: ['', Validators.required],
-      bill: ['', Validators.required],
-      minutes: ['', Validators.required],
-      planValue: ['', Validators.required],
+      bill: ['', [<any>Validators.required, <any>NgBrazilValidators.currency]],
+      minutes: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(60)]],
+      planValue: ['', [<any>Validators.required, <any>NgBrazilValidators.currency]],
       joinDate: ['', Validators.required],
       // sendDate: ['', Validators.required])],
     });
+    
+    if (this.companyEditResult) {
+      this.companyEditResult['joinDate'] = stringToDate(this.companyEditResult['joinDate']);
+      this.companyForm.patchValue(this.companyEditResult);
+    }
 
     const controls = this.companyForm.controls;
 
@@ -65,8 +81,14 @@ export class CompanyFormComponent implements OnChanges, OnInit {
   }
 
   handleSubmit() {
+
+    let data = this.companyForm.get('joinDate').value;
+    let dataPtBr = dateToString(data);
+
+    const form = cloneDeep(this.companyForm.value);
+    form.joinDate = dataPtBr;
     if  (this.companyForm.valid) {
-      this.companyFormSubmit.emit(this.companyForm);
+      this.companyFormSubmit.emit(form);
     }
   }
 

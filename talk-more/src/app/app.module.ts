@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { NgBrazil } from 'ng-brazil' 
 import { TextMaskModule } from 'angular2-text-mask';
@@ -52,7 +53,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatNativeDateModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

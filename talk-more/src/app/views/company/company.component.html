@@ -1,4 +1,4 @@
-<app-company-form
+<app-company-form *ngIf="!viewEdit"
     [companyFormEvent]="eventSubject.asObservable()"
     [companyEditResult]="company"
     (companyFormSubmit)="addCompany($event)">

@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "talk-more"
+  "defaultProject": "talk-more",
+  "cli": {
+    "analytics": false
+  }
 }

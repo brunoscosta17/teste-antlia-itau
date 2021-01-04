@@ -36,9 +36,9 @@ export class CompanyComponent implements OnInit {
   }
 
   addCompany(value) {
-    console.log(value.value);
-    if (value._id) {
-      this.talkMoreService.post(value.value)
+    console.log(value);
+    if (!value._id) {
+      this.talkMoreService.post(value)
       .subscribe(() => {
         this._snackBar.open('Adicionado com sucesso!', 'Fechar', {
           duration: 3000
@@ -52,7 +52,7 @@ export class CompanyComponent implements OnInit {
         this.eventSubject.next('enable');
       })
     } else {
-      this.talkMoreService.update(value.value._id)
+      this.talkMoreService.update(value)
       .subscribe(() => {
         this._snackBar.open('Atualizado com sucesso!', 'Fechar', {
           duration: 3000
@@ -69,8 +69,12 @@ export class CompanyComponent implements OnInit {
   }
 
   handleEditList(company) {
+    this.viewEdit = true;
     this.talkMoreService.getById(company._id)
-      .subscribe(response => this.company = response);
+      .subscribe(response => {
+        this.company = response;
+        this.viewEdit = false;
+      });
   }
 
   handleDelete(company) {

@@ -13,8 +13,7 @@ export class TalkMoreService {
   apiUrl = 'https://agdo-server.appspot.com/solicitacoes';
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'applicationId': 'BrunoDaSilvaCosta'
+      'applicationid': 'BrunoDaSilvaCosta'
     })
   };
   
@@ -31,11 +30,11 @@ export class TalkMoreService {
   }
 
   public post(value: any) {
-    return this.httpClient.post(this.apiUrl, value, this.httpOptions)
+    return this.httpClient.post(this.apiUrl, value)
   }
 
   public update(value: any) {
-    return this.httpClient.put(this.apiUrl, value)
+    return this.httpClient.put(`${this.apiUrl}/${value._id}`, value)
   }
 
   public delete(id: string) {

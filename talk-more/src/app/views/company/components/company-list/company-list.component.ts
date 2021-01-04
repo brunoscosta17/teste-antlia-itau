@@ -42,7 +42,7 @@ export class CompanyListComponent implements AfterViewInit {
   }
 
   handleEdit(company) {
-    this.talkMoreService.dataSource = company;
+    // this.talkMoreService.dataSource = company;
     this.companyEditList.emit(company);
   }
 
