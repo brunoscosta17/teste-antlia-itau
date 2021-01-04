@@ -30,7 +30,7 @@ export class TalkMoreService {
   }
 
   public post(value: any) {
-    return this.httpClient.post(this.apiUrl, value)
+    return this.httpClient.post(this.apiUrl, value, this.httpOptions)
   }
 
   public update(value: any) {
