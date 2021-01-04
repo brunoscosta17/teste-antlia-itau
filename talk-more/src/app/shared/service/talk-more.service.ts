@@ -26,7 +26,7 @@ export class TalkMoreService {
   }
 
   public getById(id: string): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiUrl}/${id}`)
+    return this.httpClient.get<any>(`${this.apiUrl}/${id}`, this.httpOptions)
   }
 
   public post(value: any) {
@@ -34,11 +34,11 @@ export class TalkMoreService {
   }
 
   public update(value: any) {
-    return this.httpClient.put(`${this.apiUrl}/${value._id}`, value)
+    return this.httpClient.put(`${this.apiUrl}/${value._id}`, value, this.httpOptions)
   }
 
   public delete(id: string) {
-    return this.httpClient.delete(`${this.apiUrl}/${id}`)
+    return this.httpClient.delete(`${this.apiUrl}/${id}`, this.httpOptions)
   }
 
 }

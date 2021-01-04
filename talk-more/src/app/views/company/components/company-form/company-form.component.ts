@@ -54,7 +54,8 @@ export class CompanyFormComponent implements OnInit {
     });
     
     if (this.companyEditResult) {
-      this.companyEditResult['joinDate'] = stringToDate(this.companyEditResult['joinDate']);
+      this.companyEditResult['joinDate'] ? this.companyEditResult['joinDate'] = stringToDate(this.companyEditResult['joinDate']) : '';
+      this.companyEditResult['sendDate'] ? this.companyEditResult['sendDate'] = stringToDate(this.companyEditResult['joinDate']) : '';
       this.companyForm.patchValue(this.companyEditResult);
     }
 
