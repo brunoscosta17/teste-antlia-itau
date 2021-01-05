@@ -1,53 +1,64 @@
 <mat-card>
+
     <mat-card-title>Nova solicitação</mat-card-title>
     <mat-card-subtitle>Insira aqui os dados cadastrais para uma nova solicitação</mat-card-subtitle>
+    
     <form action="" [formGroup]="companyForm">
-            
-        <mat-form-field style="width: 41%;"> 
-            <mat-label>Empresa</mat-label>
-            <input matInput formControlName="company" name="company">
-            <mat-error *ngIf="companyForm.controls.company.invalid">O nome da empresa é obrigatório!</mat-error>
-        </mat-form-field>
+        <div class="row">
 
-        <mat-form-field>
-            <mat-label>CNPJ</mat-label>
-            <input matInput formControlName="CNPJ" name="CNPJ" [textMask]="{mask: MASKS.cnpj.textMask}">
-            <mat-error *ngIf="companyForm.controls.CNPJ.invalid">O CNPJ da empresa é obrigatório!</mat-error>
-        </mat-form-field>
+            <div style="width: 80%;">
+     
+                <mat-form-field> 
+                    <mat-label>Empresa</mat-label>
+                    <input matInput formControlName="company" name="company">
+                    <mat-error *ngIf="companyForm.controls.company.invalid">O nome da empresa é obrigatório!</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-label>CNPJ</mat-label>
+                    <input matInput formControlName="CNPJ" name="CNPJ" [textMask]="{mask: MASKS.cnpj.textMask}">
+                    <mat-error *ngIf="companyForm.controls.CNPJ.invalid">O CNPJ da empresa é obrigatório!</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-label>Plano</mat-label>
+                    <input matInput formControlName="plan" name="plan">
+                    <mat-error *ngIf="companyForm.controls.plan.invalid">O nome do plano é obrigatório!</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-label>Tarifa</mat-label>
+                    <input matInput formControlName="bill" name="bill" currency [textMask]="{mask: MASKS.currency.textMask}">
+                    <mat-error *ngIf="companyForm.controls.bill.invalid">A tarifa é obrigatória!</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-label>Minutos</mat-label>
+                    <input matInput formControlName="minutes" name="minutes">
+                    <mat-error *ngIf="companyForm.controls.minutes.invalid">Informe os minutos do plano!</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-label>Valor Plano</mat-label>
+                    <input matInput formControlName="planValue" name="planValue" currency [textMask]="{mask: MASKS.currency.textMask}">
+                    <mat-error *ngIf="companyForm.controls.planValue.invalid">O valor do plano é obrigatório!</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-label>Data de Adesão</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="joinDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="companyForm.controls.joinDate.invalid">A data de adesão é obrigatória!</mat-error>
+                </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Plano</mat-label>
-            <input matInput formControlName="plan" name="plan">
-            <mat-error *ngIf="companyForm.controls.plan.invalid">O nome do plano é obrigatório!</mat-error>
-        </mat-form-field>
+            </div>
+    
+            <div style="float: right; position: relative; bottom: 50px;">
+                <button mat-button (click)="handleSubmit()" class="btn-talk-more">{{ companyEditResult ? 'Atualizar Solicitação' : 'Adicionar Solicitação' }}</button>
+            </div>
 
-        <mat-form-field>
-            <mat-label>Tarifa</mat-label>
-            <input matInput formControlName="bill" name="bill" currency [textMask]="{mask: MASKS.currency.textMask}">
-            <mat-error *ngIf="companyForm.controls.bill.invalid">A tarifa é obrigatória!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Minutos</mat-label>
-            <input matInput formControlName="minutes" name="minutes">
-            <mat-error *ngIf="companyForm.controls.minutes.invalid">Informe os minutos do plano!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Valor Plano</mat-label>
-            <input matInput formControlName="planValue" name="planValue" currency [textMask]="{mask: MASKS.currency.textMask}">
-            <mat-error *ngIf="companyForm.controls.planValue.invalid">O valor do plano é obrigatório!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Data de Adesão</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="joinDate">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="companyForm.controls.joinDate.invalid">A data de adesão é obrigatória!</mat-error>
-        </mat-form-field>
-
-        <button mat-button (click)="handleSubmit()" class="btn-talk-more">{{ companyEditResult ? 'Atualizar Solicitação' : 'Adicionar Solicitação' }}</button>
+        </div>
 
     </form>
 </mat-card>
